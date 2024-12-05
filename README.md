@@ -1,64 +1,102 @@
+# Economic Data Analysis Script
 
-Updated on 2022-10-14T07:13:02+06:55
-Updated on 2023-09-23T07:53:33+06:55
-Updated on 2022-10-01T14:59:35+06:55
-Updated on 2024-01-10T22:26:44+06:55
-Updated on 2024-08-19T13:42:30+06:55
-Updated on 2024-02-19T07:14:36+06:55
-Updated on 2023-09-17T18:56:20+06:55
-Updated on 2022-12-08T21:16:39+06:55
-Updated on 2024-06-24T07:04:59+06:55
-Updated on 2022-10-09T08:04:27+06:55
-Updated on 2023-10-03T12:24:29+06:55
-Updated on 2023-01-22T18:41:36+06:55
-Updated on 2024-08-05T09:55:54+06:55
-Updated on 2023-12-03T00:05:48+06:55
-Updated on 2023-07-01T20:49:08+06:55
-Updated on 2024-08-12T22:34:29+06:55
-Updated on 2024-06-18T10:55:20+06:55
-Updated on 2023-02-28T07:13:32+06:55
-Updated on 2023-02-27T10:48:50+06:55
-Updated on 2023-02-15T04:12:08+06:55
-Updated on 2023-07-16T23:20:50+06:55
-Updated on 2023-04-16T03:04:23+06:55
-Updated on 2022-08-28T08:24:08+06:55
-Updated on 2022-10-16T18:01:29+06:55
-Updated on 2023-06-13T10:52:36+06:55
-Updated on 2022-07-21T12:56:56+06:55
-Updated on 2024-02-08T22:20:59+06:55
-Updated on 2023-09-23T09:05:10+06:55
-Updated on 2022-08-05T22:11:10+06:55
-Updated on 2024-09-01T22:50:33+06:55
-Updated on 2022-10-28T19:36:13+06:55
-Updated on 2022-05-29T10:40:48+06:55
-Updated on 2024-02-10T00:30:34+06:55
-Updated on 2023-07-28T09:01:04+06:55
-Updated on 2024-05-17T01:47:07+06:55
-Updated on 2023-02-20T17:11:01+06:55
-Updated on 2023-05-22T14:46:45+06:55
-Updated on 2024-05-22T21:31:19+06:55
-Updated on 2024-07-04T02:07:45+06:55
-Updated on 2022-11-30T09:15:40+06:55
-Updated on 2023-11-26T15:00:38+06:55
-Updated on 2024-02-27T09:27:17+06:55
-Updated on 2023-08-28T14:16:35+06:55
-Updated on 2024-02-07T19:29:07+06:55
-Updated on 2024-09-29T18:39:08+06:55
-Updated on 2023-09-15T06:18:16+06:55
-Updated on 2022-07-28T10:33:26+06:55
-Updated on 2022-07-30T01:51:09+06:55
-Updated on 2023-10-25T08:55:00+06:55
-Updated on 2023-05-12T14:15:02+06:55
-Updated on 2024-03-11T14:31:13+06:55
-Updated on 2024-07-27T11:00:42+06:55
-Updated on 2024-03-01T11:39:39+06:55
-Updated on 2023-11-05T07:37:32+06:55
-Updated on 2023-11-01T17:54:33+06:55
-Updated on 2024-02-02T00:32:15+06:55
-Updated on 2023-11-25T21:10:58+06:55
-Updated on 2023-11-14T01:09:49+06:55
-Updated on 2022-08-15T00:28:45+06:55
-Updated on 2023-10-07T23:52:39+06:55
-Updated on 2022-05-09T15:09:43+06:55
-Updated on 2023-04-05T07:40:09+06:55
-Updated on 2023-01-06T00:59:53+06:55
+## Overview
+The script is designed to load, process, and visualize multiple economic indicators from CSV files. It includes functions to load data, rename columns, merge DataFrames, calculate statistics, find differences over time, define recession periods, and plot the data using Plotly.
+
+## Prerequisites
+- Python 3.x
+- Pandas
+- NumPy
+- Matplotlib
+- Plotly
+
+You can install these libraries using pip:
+
+```bash
+pip install pandas numpy matplotlib plotly
+```
+
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo-url.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd your-project-directory
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Data Preparation
+Ensure you have the following CSV files in the script's directory:
+- ConsumerPriceIndex.csv
+- CPI_PrimRent_OwnerEquivalentRent.csv
+- DelinquencyCreditCLoans_DRCCLACBS.csv
+- FedFundsEffectiveRate_MonthlyAve.csv
+- MULTJobHolders_Pri_FT_Sec_PT.csv
+- MULTJobHolders_Pri_Sec_BothFT.csv
+- MULTJobHolders_Pri_Sec_BothPT.csv
+- MULTJobHoldersPerc_ofEmployed_GENDER_MEN.csv
+- MULTJobHoldersPerc_ofEmployed_GENDER_WOMEN.csv
+- MULTJobHoldersPerc_ofEmployed.csv
+
+## Usage
+### Step-by-Step Guide
+1. **Prepare the Data**:
+   - Ensure you have the required CSV files in the script's directory.
+2. **Run the Script**:
+   - Execute the script using Python:
+     ```bash
+     python cc-delinquency-job-analysis.py
+     ```
+
+### Detailed Functions
+1. **load_data()**
+   - **Description**: Loads multiple CSV files into a list of Pandas DataFrames.
+   - **Returns**: List[pd.DataFrame]
+
+2. **rename_columns(dfs)**
+   - **Description**: Renames columns for each DataFrame in the list to provide more meaningful identifiers.
+   - **Parameters**:
+     - `dfs`: List[pd.DataFrame] — A list of DataFrames to rename columns for.
+   - **Returns**: List[pd.DataFrame]
+
+3. **merge_dataframes(dfs)**
+   - **Description**: Concatenates all DataFrames into a single one and filters by date.
+   - **Parameters**:
+     - `dfs`: List[pd.DataFrame] — A list of DataFrames to concatenate.
+   - **Returns**: pd.DataFrame
+
+4. **calculate_statistics(combined_df)**
+   - **Description**: Groups the data by date and calculates mean, median, standard deviation (std), and mode for each relevant column.
+   - **Parameters**:
+     - `combined_df`: pd.DataFrame — A DataFrame containing the merged data.
+   - **Returns**: pd.DataFrame
+
+5. **calculate_differences(annual_combined_stats)**
+   - **Description**: Calculates the difference over time for each mean column.
+   - **Parameters**:
+     - `annual_combined_stats`: pd.DataFrame — A DataFrame containing the calculated statistics.
+   - **Returns**: pd.DataFrame
+
+6. **create_recession_periods()**
+   - **Description**: Defines recession periods as a list of dictionaries.
+   - **Returns**: List[Dict[str, str]]
+
+7. **plot_data(annual_combined_stats, recession_periods)**
+   - **Description**: Plots the data using Plotly, including recession periods marked on the plots.
+   - **Parameters**:
+     - `annual_combined_stats`: pd.DataFrame — A DataFrame containing the calculated statistics.
+     - `recession_periods`: List[Dict[str, str]] — A list of dictionaries containing the recession periods.
+
+## Output
+The script will generate a Plotly interactive plot displaying the trends of various economic indicators over time, marked with recession periods.
+
+## Contributing
+Contributions are welcome! Please fork the repository and submit pull requests or open issues for improvements and bug fixes.
+
+## License
+This script is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
